@@ -1,0 +1,22 @@
+{% extends "confBySms/base.html" %}
+
+{% block title %}Create a New User{% endblock  %}
+
+{%load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+<h1 style="text-align: center;">Create An Account</h1>
+<form method="post" class="form" >
+	<p class="compulsory">(*) with the labels are compulsory</p>
+		{% csrf_token %}
+    <div class="form-in">
+    	{% bootstrap_form form layout='horizontal' %}
+
+	 	<button style="font-weight: bold;" class="btn btn-primary signup"><img src=" {% static 'confBySms/css/icons/person-plus.svg' %} "> Sign up</button>
+	 	
+    </div>
+	 
+</form>
+
+{% endblock  %}

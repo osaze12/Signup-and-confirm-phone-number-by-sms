@@ -1,0 +1,39 @@
+{% extends "confBySms/base.html" %}
+
+{% block title %}Confirm Token{% endblock  %}
+
+
+{% block content %}
+{% load bootstrap4 %}
+
+<div class="contain">
+	<div class="contain-inner">
+		{% if request.session.user_info.first_name %}
+			<div class="p-name">
+				<h1>Confirm Your Token.</h1>
+			</div>
+
+				<h2 class="token-msg"> <span class="fullname">{{request.session.user_info.first_name}} {{request.session.user_info.last_name}}</span> , a Token has been sent to your Phone number ({{request.session.user_info.phone_number}})</h2>
+				<form method="post" action="/process">
+					{% csrf_token %}
+
+					<div class="form-in">
+				    	{% bootstrap_form form layout='horizontal'%}
+					 	<button  style="font-weight: bold" class="btn btn-primary signup">Confirm</button>
+		    		</div>
+		    		<div class="relink">
+		    			<p>Want to re-send token? <a href="{% url 'reset' %} " class="resend-token">here</a> </p>
+		    		</div>
+					
+				</form>
+		{% else %}
+				<h2>Please there's something wrong.</h2>
+				<p>Create an account <a   href="{%url 'create'%} ">Here</a> </p>
+
+		{% endif %}
+	</div>
+</div>
+
+
+{% endblock %}
+

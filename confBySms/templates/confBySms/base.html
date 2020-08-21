@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Oz- {%block title%}{% endblock%} </title>
+
+	{% load bootstrap4 %}
+	{% load static %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'confBySms/css/bootstrap.min.css' %} ">
+	<link rel="stylesheet" type="text/css" href="{% static 'confBySms/css/styles.css' %} ">
+
+	{% bootstrap_css %}
+	{% bootstrap_javascript jquery='full' %}
+
+	{% bootstrap_messages %}
+
+</head>
+<body>
+	{% include "confBySms/nav.html" %}
+	<div class="content">
+	 	<div class="msg">
+		 		{% if messages %}
+					<div class="info">
+						{% for message in messages %}
+							
+								<div {% if message.tags %}class="alert alert-{{ message.tags }} " {% endif %}> {{message }} </div>
+							
+						{% endfor %}
+					</div>
+			   {% endif %}
+	 	</div>
+	    
+
+
+		{% block content%}
+		{% endblock%}
+    </div>
+    {% include "confBySms/footer.html" %}
+	
+
+
+	
+
+	<script type="text/javascript" src="{% static 'confBySms/js/bootstrap.min.js'%} "></script>
+
+</body>
+</html>
